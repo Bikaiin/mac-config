@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# ===brew===
+mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+# ===git===
+brew install git
+# ===ssh===
+ssh-keygen -t rsa
+echo ~/.ssh/config >> 'Host *
+   AddKeysToAgent yes
+   UseKeychain yes'
+# ===yabai===
+ssh-agent
+ssh-add
+sshkey=$(ssh-add -L)
+brew install koekeishiya/formulae/yabai
+sudo yabai --install-sa
+brew services start yabai
+killall Dock
+# git clone yabai rc
+
+# ===skhd===
+brew install koekeishiya/formulae/skhd
+brew services start skhd
+#git clone $HOME/.config/skhd/skhdrc
+
+#===term===
+brew cask install iterm2
+brew install fish
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+fisher add jethrokuan/fzf
+fisher add matchai/spacefish
+brew install ranger
+
+# td
+brew cask install telegram-desktop
+# ===vscode====
+brew cask install vscodium
+
+
+
+echo sshkey
+
